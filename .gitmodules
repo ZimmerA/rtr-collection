@@ -1,0 +1,12 @@
+[submodule "includes/glm"]
+	path = includes/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "lib/glfw"]
+	path = lib/glfw
+	url = https://github.com/glfw/glfw.git
+[submodule "includes/stb"]
+	path = includes/stb
+	url = https://github.com/nothings/stb.git
+[submodule "includes/LoadOBJ"]
+	path = includes/LoadOBJ
+	url = https://github.com/Vallentin/LoadOBJ
