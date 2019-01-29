@@ -16,7 +16,6 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-    // Create a GLFWwindow object that we can use for GLFW's functions
     GLFWwindow *window = glfwCreateWindow(800, 600, "Hello Triangle!", NULL, NULL);
 
     glfwMakeContextCurrent(window);
@@ -32,8 +31,7 @@ int main()
         std::cout << "Failed to initialize OpenGL context" << std::endl;
         return -1;
     }
-
-    // Define the viewport dimensions
+    
     glViewport(0, 0, 800, 600);
 
     VAO triangleVAO;

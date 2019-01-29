@@ -24,7 +24,6 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-    // Create a GLFWwindow object that we can use for GLFW's functions
     GLFWwindow *window = glfwCreateWindow(800, 600, "Cube", NULL, NULL);
 
     glfwMakeContextCurrent(window);
@@ -42,6 +41,7 @@ int main()
     }
 
     glViewport(0, 0, 800, 600);
+
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
 
