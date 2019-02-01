@@ -1,19 +1,15 @@
-#include <iostream>
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
-#define LOADOBJ_IMPLEMENTATION
-
-#include <loadobj.h>
-
 #include <vao.h>
 #include <vbo.h>
 #include <shader.h>
 #include <util.h>
+#define LOADOBJ_IMPLEMENTATION
+#include <loadobj.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <iostream>
 
 int main()
 {
@@ -25,8 +21,8 @@ int main()
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
     GLFWwindow *window = glfwCreateWindow(800, 600, "Cube", NULL, NULL);
-
     glfwMakeContextCurrent(window);
+
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -41,7 +37,6 @@ int main()
     }
 
     glViewport(0, 0, 800, 600);
-
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
 
@@ -58,6 +53,7 @@ int main()
 
     VBO cubeVbo;
     VAO cubeVao;
+
     cubeVao.bind();
     cubeVbo.buffer(trimesh.vertexCount * sizeof(LoadOBJTriangleVertex), trimesh.vertices, GL_STATIC_DRAW);
     cubeVao.vertexAttribPointer(ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(LoadOBJTriangleVertex),
@@ -81,10 +77,9 @@ int main()
     GLint modelUniformLoc = glGetUniformLocation(program.handle, "model");
 
     // Setup mvp
-    glm::mat4 persp = glm::perspective(70.0f, 800.0f / 600.0f, 0.01f, 100.0f);
+    glm::mat4 perspective = glm::perspective(70.0f, 800.0f / 600.0f, 0.01f, 100.0f);
     glm::mat4 model = glm::rotate(glm::translate(glm::mat4(1), glm::vec3(-1.0f, 0.0f, -9.0f)), 45.f,
                                   glm::vec3(0, 1, 0));
-
 
     while (!glfwWindowShouldClose(window))
     {
@@ -93,12 +88,12 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         program.use();
-        glm::mat4 mvp = persp * model;
+        glm::mat4 mvp = perspective * model;
         glUniformMatrix4fv(mvpUniformLoc, 1, GL_FALSE, glm::value_ptr(mvp));
         glUniformMatrix4fv(modelUniformLoc, 1, GL_FALSE, glm::value_ptr(model));
         cubeVao.bind();
         glDrawArrays(GL_TRIANGLES, 0, vertexCount);
-        // Swap the screen buffers
+
         glfwSwapBuffers(window);
     }
 

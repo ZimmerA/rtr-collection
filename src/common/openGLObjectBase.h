@@ -12,6 +12,7 @@ public:
     OpenGLObjectBase &operator=(const OpenGLObjectBase &) = delete;
     OpenGLObjectBase(OpenGLObjectBase &&other): handle(other.handle) { other.handle = 0; }
     OpenGLObjectBase &operator=(OpenGLObjectBase &&other) { if (this != &other) { T::destroy(handle); std::swap(handle, other.handle);}}
+
     typename T::value_type handle;
 };
 

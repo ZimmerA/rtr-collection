@@ -1,11 +1,10 @@
-#include <iostream>
-#include <stddef.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <vao.h>
 #include <vbo.h>
 #include <shader.h>
-#include <util.h>
+#include <iostream>
+#include <stddef.h>
 
 int main()
 {
@@ -16,9 +15,9 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-    GLFWwindow *window = glfwCreateWindow(800, 600, "Hello Triangle!", NULL, NULL);
-
+    GLFWwindow *window = glfwCreateWindow(800, 600, "Screen Quad", NULL, NULL);
     glfwMakeContextCurrent(window);
+
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -34,9 +33,9 @@ int main()
 
     glViewport(0, 0, 800, 600);
 
+    // Create screen quad
     VAO quadVAO;
     VBO quadVBO;
-    ShaderProgram shader;
 
     std::vector<Vertex> vertices;
     Vertex vertex;
@@ -53,23 +52,23 @@ int main()
     vertex.uv = glm::vec2(1.0f, 1.0f);
     vertices.push_back(vertex);
 
-    const char *vs = loadFile("src/basic/03_ScreenQuad/quad.vs");
-    const char *fs = loadFile("src/basic/03_ScreenQuad/quad.fs");
+    quadVAO.bind();
+    quadVBO.buffer(sizeof(Vertex) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
+    quadVAO.vertexAttribPointer(ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+                                (const GLvoid *) offsetof(Vertex, position));
+    quadVAO.vertexAttribPointer(ATTRIBUTE_TEXCOORD, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+                                (const GLvoid *) offsetof(Vertex, uv));
+
+
     Shader vertexShader(GL_VERTEX_SHADER);
-    vertexShader.attachSource(&vs);
+    vertexShader.attachSourceFromFile("src/basic/03_ScreenQuad/quad.vs");
     Shader fragmentShader(GL_FRAGMENT_SHADER);
-    fragmentShader.attachSource(&fs);
+    fragmentShader.attachSourceFromFile("src/basic/03_ScreenQuad/quad.fs");
+
+    ShaderProgram shader;
     shader.attachShader(&vertexShader);
     shader.attachShader(&fragmentShader);
     shader.linkProgram();
-
-    quadVAO.bind();
-    quadVBO.buffer(sizeof(Vertex) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
-    quadVAO.vertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
-                                (const GLvoid *) offsetof(Vertex, position));
-    quadVAO.vertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex),
-                                (const GLvoid *) offsetof(Vertex, uv));
-
 
     while (!glfwWindowShouldClose(window))
     {
@@ -81,7 +80,6 @@ int main()
         quadVAO.bind();
         glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
-        // Swap the screen buffers
         glfwSwapBuffers(window);
     }
 

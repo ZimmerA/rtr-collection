@@ -1,11 +1,10 @@
-#include <iostream>
-#include <stddef.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <vao.h>
 #include <vbo.h>
 #include <shader.h>
-#include <util.h>
+#include <iostream>
+#include <stddef.h>
 
 int main()
 {
@@ -16,9 +15,9 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-    GLFWwindow *window = glfwCreateWindow(800, 600, "Hello Triangle!", NULL, NULL);
-
+    GLFWwindow *window = glfwCreateWindow(800, 600, "Hello Triangle", NULL, NULL);
     glfwMakeContextCurrent(window);
+
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -31,12 +30,12 @@ int main()
         std::cout << "Failed to initialize OpenGL context" << std::endl;
         return -1;
     }
-    
+
     glViewport(0, 0, 800, 600);
 
+    // Create Triangle
     VAO triangleVAO;
     VBO triangleVBO;
-    ShaderProgram shader;
 
     std::vector<Vertex> vertices;
     Vertex vertex;
@@ -47,20 +46,20 @@ int main()
     vertex.position = glm::vec3(0.0f, 0.5f, 0.0f);
     vertices.push_back(vertex);
 
-    const char *vs = loadFile("src/basic/01_HelloTriangle/triangle.vs");
-    const char *fs = loadFile("src/basic/01_HelloTriangle/triangle.fs");
-    Shader vertexShader(GL_VERTEX_SHADER);
-    vertexShader.attachSource(&vs);
-    Shader fragmentShader(GL_FRAGMENT_SHADER);
-    fragmentShader.attachSource(&fs);
-    shader.attachShader(&vertexShader);
-    shader.attachShader(&fragmentShader);
-    shader.linkProgram();
-
     triangleVAO.bind();
     triangleVBO.buffer(sizeof(Vertex) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
     triangleVAO.vertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
                                     (const GLvoid *) offsetof(Vertex, position));
+
+    Shader vertexShader(GL_VERTEX_SHADER);
+    vertexShader.attachSourceFromFile("src/basic/01_HelloTriangle/triangle.vs");
+    Shader fragmentShader(GL_FRAGMENT_SHADER);
+    fragmentShader.attachSourceFromFile("src/basic/01_HelloTriangle/triangle.fs");
+
+    ShaderProgram shader;
+    shader.attachShader(&vertexShader);
+    shader.attachShader(&fragmentShader);
+    shader.linkProgram();
 
     while (!glfwWindowShouldClose(window))
     {
@@ -72,7 +71,6 @@ int main()
         triangleVAO.bind();
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
-        // Swap the screen buffers
         glfwSwapBuffers(window);
     }
 

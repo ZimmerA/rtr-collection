@@ -59,7 +59,7 @@ void Shader::attachSourceFromFile(const char *path)
 {
     const char *data = loadFile(path);
     attachSource(&data);
-    free((void*)data);
+    free((void *) data);
 }
 
 /*
