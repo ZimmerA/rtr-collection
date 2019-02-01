@@ -28,3 +28,5 @@ add_executable(ScreenQuad ${SRC} ${PROJECT_SOURCE_DIR}/src/basic/03_ScreenQuad/s
 target_link_libraries(ScreenQuad glfw) # Link glfw
 
 
+add_executable(DefferedShading ${SRC} ${PROJECT_SOURCE_DIR}/src/advanced/01_DeferredShading/deferredShading.cpp ${GLAD})
+target_link_libraries(DefferedShading glfw) # Link glfw

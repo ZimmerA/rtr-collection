@@ -9,7 +9,7 @@ TextureTraits::value_type TextureTraits::create()
 
 void TextureTraits::destroy(TextureTraits::value_type handle)
 {
-    glDeleteTextures(1,&handle);
+    glDeleteTextures(1, &handle);
 }
 
 Texture::Texture(GLenum target) : target(target)
@@ -28,7 +28,9 @@ void Texture::texParameteri(GLenum name, GLint value)
     glTexParameteri(target, name, value);
 }
 
-void Texture::texImage()
+void Texture::texImage2D(GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format,
+                         GLenum type, const GLvoid *data)
 {
-
+    bind();
+    glTexImage2D(target, level, internalformat, width, height, border, format, type, data);
 }

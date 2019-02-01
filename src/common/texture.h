@@ -18,7 +18,8 @@ public:
 
     void bind();
 
-    void texImage();
+    void texImage2D(GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format,
+                    GLenum type, const GLvoid *data);
 
     void texParameteri(GLenum name, GLint value);
 
