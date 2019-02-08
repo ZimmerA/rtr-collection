@@ -1,10 +1,19 @@
 #ifndef RTR_COLLECTION_VBO_H
 #define RTR_COLLECTION_VBO_H
 
-#include <glad/glad.h>
-#include <glm/glm.hpp>
 #include <vector>
+
+#include "glad/glad.h"
+#include "glm/glm.hpp"
 #include "openGLObjectBase.h"
+
+struct Vertex {
+    glm::vec3 position;
+    glm::vec2 uv;
+    glm::vec3 normal;
+    glm::vec3 tangent;
+    glm::vec3 bitangent;
+};
 
 struct VertexBufferObjectTraits {
     typedef GLuint value_type;
@@ -14,12 +23,7 @@ struct VertexBufferObjectTraits {
     static void destroy(value_type handle);
 };
 
-struct Vertex {
-    glm::vec3 position;
-    glm::vec2 uv;
-};
-
-class VBO : public OpenGLObjectBase<VertexBufferObjectTraits> {
+class VertexBuffer : public OpenGLObjectBase<VertexBufferObjectTraits> {
 public:
     void buffer(GLsizeiptr size, const GLvoid *data, GLenum mode);
 };

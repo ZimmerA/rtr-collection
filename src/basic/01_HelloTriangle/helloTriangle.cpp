@@ -1,10 +1,11 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <vao.h>
-#include <vbo.h>
-#include <shader.h>
 #include <iostream>
 #include <stddef.h>
+
+#include "glad/glad.h"
+#include "GLFW/glfw3.h"
+#include "vertexArray.h"
+#include "vertexBuffer.h"
+#include "shader.h"
 
 int main()
 {
@@ -34,8 +35,8 @@ int main()
     glViewport(0, 0, 800, 600);
 
     // Create Triangle
-    VAO triangleVAO;
-    VBO triangleVBO;
+    VertexArray triangleVAO;
+    VertexBuffer triangleVBO;
 
     std::vector<Vertex> vertices;
     Vertex vertex;

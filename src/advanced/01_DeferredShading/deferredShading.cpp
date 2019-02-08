@@ -1,17 +1,18 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <vao.h>
-#include <vbo.h>
-#include <shader.h>
-#include <util.h>
-#include <frameBuffer.h>
-#define LOADOBJ_IMPLEMENTATION
-#include <loadobj.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 #include <stddef.h>
+
+#include "glad/glad.h"
+#include "GLFW/glfw3.h"
+#include "vertexArray.h"
+#include "vertexBuffer.h"
+#include "shader.h"
+#include "util.h"
+#include "frameBuffer.h"
+#define LOADOBJ_IMPLEMENTATION
+#include "loadobj.h"
+#include "glm/glm.hpp"
+#include "glm/gtc/type_ptr.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 // Press E to toggle gBuffer preview on/off
 bool previewGBuffer = true;
@@ -89,8 +90,8 @@ int main()
     loadOBJDestroyMesh(&mesh);
     size_t vertexCount = trimesh.vertexCount;
 
-    VBO cubeVbo;
-    VAO cubeVao;
+    VertexBuffer cubeVbo;
+    VertexArray cubeVao;
 
     cubeVao.bind();
     cubeVbo.buffer(trimesh.vertexCount * sizeof(LoadOBJTriangleVertex), trimesh.vertices, GL_STATIC_DRAW);
@@ -101,8 +102,8 @@ int main()
     loadOBJDestroyTriangleMesh(&trimesh);
 
     // Create screen quad
-    VAO quadVAO;
-    VBO quadVBO;
+    VertexArray quadVAO;
+    VertexBuffer quadVBO;
     ShaderProgram shader;
 
     std::vector<Vertex> vertices;

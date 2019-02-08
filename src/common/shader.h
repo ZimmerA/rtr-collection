@@ -1,12 +1,14 @@
 #ifndef RTR_COLLECTION_SHADER_H
 #define RTR_COLLECTION_SHADER_H
 
-#include <glad/glad.h>
-#include "openGLObjectBase.h"
-
 #define ATTRIBUTE_POSITION 0
 #define ATTRIBUTE_TEXCOORD 1
 #define ATTRIBUTE_NORMAL 2
+#define ATTRIBUTE_TANGENT 3
+#define ATTRIBUTE_BITANGENT 4
+
+#include "glad/glad.h"
+#include "openGLObjectBase.h"
 
 // TODO: Find a way to use SFINAE to deal with the shadertype in the  OpenGLObjectBase constructor
 /*
@@ -20,6 +22,8 @@ struct ShaderTraits {
 
 class Shader {
 public:
+    GLuint handle;
+
     Shader(GLenum shaderType);
 
     ~Shader();
@@ -28,7 +32,6 @@ public:
 
     void attachSourceFromFile(const char *path);
 
-    GLuint handle;
 private:
     GLenum type;
 };
@@ -49,6 +52,5 @@ public:
 
     void use();
 };
-
 
 #endif //RTR_COLLECTION_SHADER_H

@@ -1,8 +1,9 @@
+#include <iostream>
 #include <algorithm>
+#include <stdlib.h>
+
 #include "shader.h"
-#include<iostream>
-#include<util.h>
-#include<stdlib.h>
+#include "util.h"
 
 /*
  * Shader
