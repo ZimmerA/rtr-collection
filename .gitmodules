@@ -10,3 +10,6 @@
 [submodule "includes/LoadOBJ"]
 	path = includes/LoadOBJ
 	url = https://github.com/Vallentin/LoadOBJ
+[submodule "lib/tinygltf"]
+	path = lib/tinygltf
+	url = https://github.com/syoyo/tinygltf.git

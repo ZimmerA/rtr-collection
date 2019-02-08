@@ -14,7 +14,7 @@ include_directories(${PROJECT_SOURCE_DIR}/includes)
 include_directories(${PROJECT_SOURCE_DIR}/includes/glm)
 include_directories(${PROJECT_SOURCE_DIR}/includes/stb)
 include_directories(${PROJECT_SOURCE_DIR}/includes/LoadOBJ)
-
+include_directories(${PROJECT_SOURCE_DIR}/lib/tinygltf)
 file(GLOB_RECURSE SRC ${PROJECT_SOURCE_DIR}/src/common/*.c* ${PROJECT_SOURCE_DIR}/src/common/*.h)
 file(GLOB_RECURSE GLAD  ${PROJECT_SOURCE_DIR}/includes/glad/*.h* ${PROJECT_SOURCE_DIR}/includes/glad/*.c*)
 
@@ -27,6 +27,8 @@ target_link_libraries(Cube glfw) # Link glfw
 add_executable(ScreenQuad ${SRC} ${PROJECT_SOURCE_DIR}/src/basic/03_ScreenQuad/screenQuad.cpp ${GLAD})
 target_link_libraries(ScreenQuad glfw) # Link glfw
 
+add_executable(NormalMapping ${SRC} ${PROJECT_SOURCE_DIR}/src/basic/04_NormalMapping/normalMapping.cpp ${GLAD})
+target_link_libraries(NormalMapping glfw) # Link glfw
 
 add_executable(DefferedShading ${SRC} ${PROJECT_SOURCE_DIR}/src/advanced/01_DeferredShading/deferredShading.cpp ${GLAD})
 target_link_libraries(DefferedShading glfw) # Link glfw
