@@ -71,6 +71,7 @@ int Model::load(const char *path)
     {
         iterateNodeHierarchyRecursive(model, n, parentTransform);
     }
+    return 1;
 }
 
 void Model::iterateNodeHierarchyRecursive(tinygltf::Model &model, int nodeIndex, Transform &parentTransform)
