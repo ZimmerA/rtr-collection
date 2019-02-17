@@ -101,23 +101,23 @@ int main()
     // Setup g buffer
     FrameBuffer gBuffer;
 
-    Texture gPosition(GL_TEXTURE_2D);
-    gPosition.texImage2D(0, GL_RGB16F, 800, 600, 0, GL_RGB, GL_FLOAT, NULL);
+    Texture gPosition;
+    gPosition.texImage( 0, GL_RGB16F, 800, 600, 0, GL_RGB, GL_FLOAT, NULL);
     gPosition.texParameteri(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     gPosition.texParameteri(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    gBuffer.attachTexture2D(GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, gPosition, 0);
+    gBuffer.attachTexture(GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, gPosition.handle, 0);
 
-    Texture gNormal(GL_TEXTURE_2D);
-    gNormal.texImage2D(0, GL_RGB16F, 800, 600, 0, GL_RGB, GL_FLOAT, NULL);
+    Texture gNormal;
+    gNormal.texImage(0, GL_RGB16F, 800, 600, 0, GL_RGB, GL_FLOAT, NULL);
     gNormal.texParameteri(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     gNormal.texParameteri(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    gBuffer.attachTexture2D(GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, gNormal, 0);
+    gBuffer.attachTexture(GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, gNormal.handle, 0);
 
-    Texture gColorSpec(GL_TEXTURE_2D);
-    gColorSpec.texImage2D(0, GL_RGBA, 800, 600, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+    Texture gColorSpec;
+    gColorSpec.texImage(0, GL_RGBA, 800, 600, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
     gColorSpec.texParameteri(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     gColorSpec.texParameteri(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    gBuffer.attachTexture2D(GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, gColorSpec, 0);
+    gBuffer.attachTexture(GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, gColorSpec.handle, 0);
 
     unsigned int attachments[3] = {GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2};
     glDrawBuffers(3, attachments);

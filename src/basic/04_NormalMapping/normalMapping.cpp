@@ -48,23 +48,25 @@ int main()
     m.load("models/lantern/Lantern.gltf");
 
     // Load textures
-    Texture albedo(GL_TEXTURE_2D);
+    Texture albedo;
     albedo.texParameteri(GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     albedo.texParameteri(GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    Texture normal(GL_TEXTURE_2D);
+    Texture normal;
     normal.texParameteri(GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     normal.texParameteri(GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     int x, y, n;
 
     unsigned char *data = stbi_load("models/lantern/Lantern_baseColor.png", &x, &y, &n, 0);
     assert(data != NULL);
-    albedo.texImage2D(0, GL_RGBA, x, y, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    albedo.texImage(0, GL_RGBA, x, y, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    glGenerateMipmap(GL_TEXTURE_2D);
     free(data);
 
     data = stbi_load("models/lantern/Lantern_normal.png", &x, &y, &n, 0);
     assert(data != NULL);
-    normal.texImage2D(0, GL_RGB, x, y, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    normal.texImage(0, GL_RGB, x, y, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    glGenerateMipmap(GL_TEXTURE_2D);
     free(data);
 
     glActiveTexture(GL_TEXTURE0);

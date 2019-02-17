@@ -10,7 +10,7 @@ class FrameBuffer : public OpenGLObjectBase<FrameBufferTraits> {
 public:
     void bind();
 
-    void attachTexture2D(GLenum attachment, GLuint texture, const Texture &tex, GLint level);
+    void attachTexture(GLenum attachment, GLuint textureTarget, GLuint textureHandle, GLint level);
 };
 
 #endif //RTR_COLLECTION_FRAMEBUFFER_H
