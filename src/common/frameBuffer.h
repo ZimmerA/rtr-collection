@@ -2,16 +2,9 @@
 #define RTR_COLLECTION_FRAMEBUFFER_H
 
 #include "glad/glad.h"
+#include "glTraits.h"
 #include "openGLObjectBase.h"
 #include "texture.h"
-
-struct FrameBufferTraits {
-    typedef GLuint value_type;
-
-    static value_type create();
-
-    static void destroy(value_type handle);
-};
 
 class FrameBuffer : public OpenGLObjectBase<FrameBufferTraits> {
 public:

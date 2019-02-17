@@ -5,6 +5,7 @@
 
 #include "glad/glad.h"
 #include "glm/glm.hpp"
+#include "glTraits.h"
 #include "openGLObjectBase.h"
 
 struct Vertex {
@@ -13,14 +14,6 @@ struct Vertex {
     glm::vec3 normal;
     glm::vec3 tangent;
     glm::vec3 bitangent;
-};
-
-struct VertexBufferObjectTraits {
-    typedef GLuint value_type;
-
-    static value_type create();
-
-    static void destroy(value_type handle);
 };
 
 class VertexBuffer : public OpenGLObjectBase<VertexBufferObjectTraits> {

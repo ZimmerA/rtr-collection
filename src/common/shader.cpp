@@ -66,16 +66,6 @@ void Shader::attachSourceFromFile(const char *path)
 /*
  * ShaderProgram
  */
-ShaderProgramTraits::value_type ShaderProgramTraits::create()
-{
-    return glCreateProgram();
-}
-
-void ShaderProgramTraits::destroy(ShaderProgramTraits::value_type handle)
-{
-    glDeleteProgram(handle);
-}
-
 void ShaderProgram::attachShader(Shader *shader)
 {
     glAttachShader(handle, shader->handle);

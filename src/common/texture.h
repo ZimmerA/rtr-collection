@@ -3,14 +3,7 @@
 
 #include "glad/glad.h"
 #include "openGLObjectBase.h"
-
-struct TextureTraits {
-    typedef GLuint value_type;
-
-    static value_type create();
-
-    static void destroy(value_type handle);
-};
+#include "glTraits.h"
 
 class Texture : public OpenGLObjectBase<TextureTraits> {
 public:

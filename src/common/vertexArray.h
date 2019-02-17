@@ -2,15 +2,8 @@
 #define RTR_COLLECTION_VAO_H
 
 #include "glad/glad.h"
+#include "glTraits.h"
 #include "openGLObjectBase.h"
-
-struct VertexArrayObjectTraits {
-    typedef GLuint value_type;
-
-    static value_type create();
-
-    static void destroy(value_type handle);
-};
 
 class VertexArray : public OpenGLObjectBase<VertexArrayObjectTraits> {
 public:
