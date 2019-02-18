@@ -31,3 +31,12 @@ target_link_libraries(NormalMapping glfw) # Link glfw
 
 add_executable(DefferedShading ${SRC} ${PROJECT_SOURCE_DIR}/src/advanced/01_DeferredShading/deferredShading.cpp ${GLAD})
 target_link_libraries(DefferedShading glfw) # Link glfw
+
+add_executable(ShadowMappingColor ${SRC} src/advanced/02_ShadowMapping/PointLight/Cubemap/01_ColorTexture/shadowMapping.cpp ${GLAD})
+target_link_libraries(ShadowMappingColor glfw) # Link glfw
+
+add_executable(ShadowMappingDepth ${SRC} src/advanced/02_ShadowMapping/PointLight/Cubemap/02_DepthTexture/shadowMapping.cpp ${GLAD})
+target_link_libraries(ShadowMappingDepth glfw) # Link glfw
+
+add_executable(ShadowMappingColorT2D ${SRC} src/advanced/02_ShadowMapping/PointLight/Texture2D/01_ColorTexture/shadowMapping.cpp ${GLAD})
+target_link_libraries(ShadowMappingColorT2D glfw) # Link glfw
