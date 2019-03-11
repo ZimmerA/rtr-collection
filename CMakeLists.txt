@@ -46,5 +46,3 @@ target_link_libraries(ShadowMappingColor nanogui ${NANOGUI_EXTRA_LIBS})
 add_executable(ShadowMappingDepth ${SRC} src/advanced/02_ShadowMapping/PointLight/Cubemap/02_DepthTexture/shadowMapping.cpp ${GLAD})
 target_link_libraries(ShadowMappingDepth nanogui ${NANOGUI_EXTRA_LIBS})
 
-add_executable(ShadowMappingColorT2D ${SRC} src/advanced/02_ShadowMapping/PointLight/Texture2D/01_ColorTexture/shadowMapping.cpp ${GLAD})
-target_link_libraries(ShadowMappingColorT2D glfw) # Link glfw
