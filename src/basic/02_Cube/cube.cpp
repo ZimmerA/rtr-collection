@@ -2,8 +2,8 @@
 
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
-#include "vertexArray.h"
 #include "vertexBuffer.h"
+#include "vertexArray.h"
 #include "shader.h"
 #include "util.h"
 #include "glm/glm.hpp"

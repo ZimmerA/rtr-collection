@@ -1,12 +1,12 @@
 [submodule "includes/glm"]
 	path = includes/glm
 	url = https://github.com/g-truc/glm.git
-[submodule "lib/glfw"]
-	path = lib/glfw
-	url = https://github.com/glfw/glfw.git
 [submodule "includes/stb"]
 	path = includes/stb
 	url = https://github.com/nothings/stb.git
 [submodule "lib/tinygltf"]
 	path = lib/tinygltf
 	url = https://github.com/syoyo/tinygltf.git
+[submodule "lib/nanogui"]
+	path = lib/nanogui
+	url = https://github.com/wjakob/nanogui.git
